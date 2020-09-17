@@ -10,4 +10,4 @@ def config():
         with open('config.yaml', mode='r') as f:
             __config = yaml.safe_load(f)
     #regresa el valor de config que se extrae del config.yaml
-        return __config
+    return __config
