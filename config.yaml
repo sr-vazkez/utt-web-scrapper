@@ -1,6 +1,10 @@
 news_sites:
   el_universal:
     url: http://www.eluniversal.com.mx
+    queries:
+      homepage_article_links: '.ce6-Tipo1_Titulo a'
   elpais:
     url: https://www.elpais.com
+    queries:
+      homepage_article_links: '.headline a'
     
