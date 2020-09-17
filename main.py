@@ -9,13 +9,12 @@ logger = logging.getLogger(__name__)
 
 def _news_scraper(news_site_uid):
     host = config()['new_sites'][news_site_uid]['url']
+
     logging.info(f'Iniciando el scrape for {host}')
-
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    news_site_choices = list(config() ['news_sites'].keys())
+    news_site_choices = list(config()['news_sites'].keys())
     parser.add_argument('news_site',
         help = 'Los sitios de noticias que quieras Scrape',
         type = str,
