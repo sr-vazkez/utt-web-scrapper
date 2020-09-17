@@ -1,7 +1,7 @@
 import argparse
-import lodding
+import logging
 
-lodding.basicConfig(level = logging.INFO)
+logging.basicConfig(level = logging.INFO)
 
 from common import config
 
@@ -9,8 +9,9 @@ logger = logging.getLogger(__name__)
 
 def _news_scraper(news_site_uid):
     host = config()['new_sites'][news_site_uid]['url']
+    logging.info(f'Iniciando el scrape for {host}')
 
-    lodding.info(f'Iniciando el scrape for {host}')
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
