@@ -20,4 +20,4 @@ if __name__ == "__main__":
         type = str,
         choices = news_site_choices)
     args = parser.parse_args()
-    __news_scraper(args.news_site)
+    _news_scraper(args.news_site)
