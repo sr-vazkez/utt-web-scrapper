@@ -1,6 +1,9 @@
 import argparse
 import logging
 
+from requests.exceptions import HTTPError
+from urllib3.exceptions import MaxRetryError
+
 logging.basicConfig(level=logging.INFO)
 
 import news_page_objects as news
@@ -36,6 +39,8 @@ def _fetch_articles(news_site_uid, host, link):
     if article and not article.body:
         logger.warn('Articulo Invalido. No tiene un body')
         return None
+    
+    return article
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
