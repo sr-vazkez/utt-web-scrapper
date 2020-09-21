@@ -1,5 +1,6 @@
 import argparse
 import logging
+import re
 
 from requests.exceptions import HTTPError
 from urllib3.exceptions import MaxRetryError
@@ -10,6 +11,9 @@ import news_page_objects as news
 from common import config
 
 logger = logging.getLogger(__name__)
+
+is_well_formed_link = re.compile(r'https?://.+/.$')
+is_root_path = re.compile(r'^/.+$')
 
 def _news_scraper(news_site_uid):
     host = config()['news_sites'][news_site_uid]['url']
@@ -41,6 +45,14 @@ def _fetch_articles(news_site_uid, host, link):
         return None
     
     return article
+
+def _build_link(host, link):
+    if is_well_formed_link.match(link):
+        return link
+    elif is_root_path.match(link):
+        return f'{host}{link}'
+    else:
+        return f'{host}/{link}'
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
