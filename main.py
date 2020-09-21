@@ -24,10 +24,18 @@ def _news_scraper(news_site_uid):
             print(article.title)
     print(len(articles))
 
+def _fetch_articles(news_site_uid, host, link):
+    logger.info(f'Iniciando extracion del articluo en : {link}')
 
+    article = None
+    try:
+        article = news.ArticlePage(news_site_uid, _build_link(host,link))
+    except (HTTPError, MaxRetryError) as e:
+        logger.warning('Error en la extraccion del articulo', exc_info=False)
 
-
-
+    if article and not article.body:
+        logger.warn('Articulo Invalido. No tiene un body')
+        return None
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
