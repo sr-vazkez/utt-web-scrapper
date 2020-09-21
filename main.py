@@ -12,7 +12,11 @@ def _news_scraper(news_site_uid):
     host = config()['news_sites'][news_site_uid]['url']
 
     logging.info(f'Iniciando el scrape for {host}')
+    homepage = news.HomePage(news_site_uid, host)
 
+    for link in homepage.article_links:
+        print(link)
+        
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     news_sites_choices = list(config()['news_sites'].keys())
