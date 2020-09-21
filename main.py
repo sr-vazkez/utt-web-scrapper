@@ -13,10 +13,22 @@ def _news_scraper(news_site_uid):
 
     logging.info(f'Iniciando el scrape for {host}')
     homepage = news.HomePage(news_site_uid, host)
-
+    articles = []
     for link in homepage.article_links:
-        print(link)
-        
+        #vamos a imprimir         print(link)
+        article = _fetch_articles(news_site_uid, host, linux)
+
+        if article:
+            logger.info('Articulo extraido :v')
+            articles.append(article)
+            print(article.title)
+    print(len(articles))
+
+
+
+
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     news_sites_choices = list(config()['news_sites'].keys())
