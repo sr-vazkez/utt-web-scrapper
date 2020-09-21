@@ -3,8 +3,12 @@ news_sites:
     url: http://www.eluniversal.com.mx
     queries:
       homepage_article_links: '.ce6-Tipo1_Titulo a'
+      article_body: '.field-name-body'
+      article_title: '.Enncabezado-Articulo h1'
   elpais:
     url: https://www.elpais.com
     queries:
       homepage_article_links: '.headline a'
+      article_body: ''
+      article_title: ''
     
