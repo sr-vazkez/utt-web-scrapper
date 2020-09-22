@@ -123,3 +123,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+# Generados por el mismo sofware
+response.txt
