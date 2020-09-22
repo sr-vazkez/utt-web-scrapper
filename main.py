@@ -8,6 +8,7 @@ from urllib3.exceptions import MaxRetryError
 logging.basicConfig(level=logging.INFO)
 
 import news_page_objects as news
+
 from common import config
 
 logger = logging.getLogger(__name__)
