@@ -1,2 +1,2 @@
 # utt-web-scrapper
- Proyecto escolar, unicamente para poder realizar web scrapping
+ Proyecto escolar, unicamente para poder realizar web scrapping.
