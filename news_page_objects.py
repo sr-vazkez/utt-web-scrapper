@@ -4,6 +4,7 @@ import requests
 from common import config
 
 class NewsPage:
+    
     def __init__ (self, news_site_uid, url):
         self._config = config()['news_site'][news_site_uid]
         self._queries = self._config['queries']
@@ -36,8 +37,10 @@ class HomePage(NewsPage):
         return self._html.select(query_string)
 
 class ArticlePage(NewsPage):
+
     def __init__(self, news_site_uid, url):
-        super().__init__(news_site_uid)
+        super().__init__(news_site_uid, url)
+    
     @property
     def body(self):
         result = self._select(self._queries['article_body'])
