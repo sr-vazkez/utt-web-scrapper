@@ -125,3 +125,4 @@ dmypy.json
 .pyre/
 # Generados por el mismo sofware
 response.txt
+*.csv
