@@ -2,7 +2,7 @@ import argparse
 import logging
 import re
 import csv
-import datatime
+import datetime
 
 
 from requests.exceptions import HTTPError
