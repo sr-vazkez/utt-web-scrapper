@@ -1,6 +1,9 @@
 import argparse
 import logging
 import re
+import csv
+import datatime
+
 
 from requests.exceptions import HTTPError
 from urllib3.exceptions import MaxRetryError
@@ -35,7 +38,16 @@ def _news_scraper(news_site_uid):
 
 def _save_articles(news_site_uid, articles):
     now = datetime.now().strftime('%Y_%m_%d')
-    out_file_name = f'{news_site_uid}_{now}'
+    out_file_name = f'{news_site_uid}_{now}_articles.csv'
+    csv_headers = list(filter(lambda property: not property.startswith('_'), dir(articles[0])))
+
+    with open(out_file_name, mode='w+') as f:
+        writer = csv.writer(f)
+        writer.writerow(csv_headers)
+
+        for article in articles:
+            row = [str(getattr(article, prop)) for prop in csv_headers ]
+            writer.writerow(row)
 
 
 
