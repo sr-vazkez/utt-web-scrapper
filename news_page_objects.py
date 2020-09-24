@@ -6,7 +6,7 @@ from common import config
 class NewsPage:
     
     def __init__ (self, news_site_uid, url):
-        self._config = config()['news_site'][news_site_uid]
+        self._config = config()['news_sites'][news_site_uid]
         self._queries = self._config['queries']
         self._html = None
 
