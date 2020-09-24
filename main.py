@@ -32,6 +32,13 @@ def _news_scraper(news_site_uid):
             print(article.title)
     print(len(articles))
 
+
+def _save_articles(news_site_uid, articles):
+    now = datetime.now().strftime('%Y_%m_%d')
+    out_file_name = f'{news_site_uid}_{now}'
+
+
+
 def _fetch_articles(news_site_uid, host, link):
     logger.info(f'Iniciando extracion del articluo en : {link}')
 
@@ -54,6 +61,9 @@ def _build_link(host, link):
         return f'{host}{link}'
     else:
         return f'{host}/{link}'
+
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
