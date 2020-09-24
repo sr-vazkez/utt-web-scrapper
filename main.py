@@ -32,8 +32,9 @@ def _news_scraper(news_site_uid):
         if article:
             logger.info('Articulo extraido :v')
             articles.append(article)
-            print(article.title)
-    print(len(articles))
+            #print(article.title)
+    #print(len(articles))
+    _save_articles(news_site_uid, articles)
 
 
 def _save_articles(news_site_uid, articles):
