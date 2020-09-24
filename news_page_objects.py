@@ -13,13 +13,13 @@ class NewsPage:
         self._visit(url)
     
     def _select(self, query_string):
+        return self._html.select(query_string)  
         return self._html.select(query_string)
 
     def _visit(self, url):
         response = requests.get(url)
         response.raise_for_status()
-        self._html = bs4.BeautifulSoup(response.txt, 'html.parser')
-
+        self._html = bs4.BeautifulSoup(response.text, 'html.parser')
 class HomePage(NewsPage):
 
     def __init__(self, news_site_uid, url):
