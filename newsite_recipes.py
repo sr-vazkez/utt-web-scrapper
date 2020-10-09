@@ -43,17 +43,25 @@ def _extract_host(df):
     return df
 
 def _fill_mising_titles(df):
-    logger.info('Generando uids para cada columna')
-    uids = (df
-                .apply(lambda row: hashlib.md5(bytes(row['url'].encode())), axis=1)
-                .apply(lambda hash_object: hash_object.hexdigest())
-            )
-    df['uid'] = uids
-    return df.set_index('uid')
+    logger.info('LLenando titulos perdidos')
+    missing_titles_mask = df['title'].isna()
+    missing_titles = (df[missing_titles_mask]['url']
+                        .str.extract(r'(?P<missing_titles>[^/]+)$')
+                        .astype(str).applymap(lambda title: title.replace('-', ' '))
+                    )
+    df.loc[missing_titles_mask, 'title'] = missing_title.loc[:,'missing_titles']
+    return df
 
 def _generate_uids_for_rows(df):
-    logger.info('Removiendo nuevas lineas del cuerpo')
+    logger.info('Generando uids para cada columna')
+    uids = (df.apply(lambda row: hashlib.md5(bytes(row['url'].encode())), axis=1).apply(lambda hash_object: hash_object.hexdigest()))
+    df['uid'] = uids
+    df.set_index('uid')
+    return df
 
+def _removes_news_lines_from_body(df):
+
+    logger.info('Removiendo nuevas lineas del cuerpo')
     stripped_body = (
         df
         .apply(lambda row: row['body'], axis=1)
@@ -62,7 +70,7 @@ def _generate_uids_for_rows(df):
         .apply(lambda letters: ''.join(letters))
     )
     df['body'] = stripped_body
-    return 
+    return df.set_index('uid')
 
 
 if __name__ == '__main__':
