@@ -42,8 +42,8 @@ def _extract_host(df):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('filename',help='La raiz de los datos sucios', type=str)
-
-    arg = parser.parse_args()
-
+ 
+    args = parser.parse_args()
     df = main(args.filename) 
+
     print(df)
