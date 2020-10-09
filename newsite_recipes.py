@@ -2,7 +2,7 @@ import argparse
 import logging
 import hashlib
 import nltk
-from ntlk.corpus import stopwords
+from nltk.corpus import stopwords
 
 
 logging.basicConfig(level=logging.INFO)
@@ -76,7 +76,7 @@ def _generate_uids_for_rows(df):
 
     return df
 
-def _removes_news_lines_from_body(df):
+def _remove_news_lines_from_body(df):
     logger.info('Removiendo nuevas lineas del cuerpo')
     stripped_body = (df
                         .apply(lambda row: row['body'], axis=1)
