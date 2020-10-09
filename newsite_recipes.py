@@ -1,11 +1,11 @@
 import argparse
 import logging
 logging.basicConfig(level=logging.INFO)
-import urllib.parse import urlparse
+from urllib.parse import urlparse
 
 import pandas as pd
 
-logger = loggin.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 def main(filename):
     logger.info('Empezando el proseso de limpiado')
@@ -14,6 +14,8 @@ def main(filename):
     newspaper_uid = _extract_newspaper_uid(filename)
     df = _add_newspaper_uid_column(df, newspaper_uid) 
     df = _extract_host(df)
+
+    return df
 
 def _read_data(filename):
     logger.info('Leyendo el archivo {}'.format(filename))
@@ -43,4 +45,5 @@ if __name__ == '__main__':
 
     arg = parser.parse_args()
 
-    main(args.filename) 
+    df = main(args.filename) 
+    print(df)
